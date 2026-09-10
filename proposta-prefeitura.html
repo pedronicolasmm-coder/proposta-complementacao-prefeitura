@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta · Prefeitura de São Miguel das Missões</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest: #2E4034;
+    --forest-dark: #1F2B23;
+    --gold: #B79B62;
+    --gold-light: #D4BE8E;
+    --cream: #F5F2EA;
+    --cream-dark: #E9E4D6;
+    --text: #2A2A26;
+    --muted: #6F6F66;
+    --white: #FFFFFF;
+    --border: #DDD8C9;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    background: var(--forest-dark);
+    padding: 18px 40px;
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(245,242,234,0.75);
+    text-decoration: none;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--forest-dark) !important;
+    padding: 9px 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); color: var(--forest-dark) !important; }
+
+  /* HERO */
+  /* ==========================================================
+     TROCAR IMAGEM DO HERO AQUI
+     Cole o link da foto das Ruínas na linha url(...) abaixo.
+     Exemplo: url('https://seusite.com/ruinas.jpg')
+     Depois de colar, apague a linha do radial-gradient.
+     ========================================================== */
+  .hero {
+    min-height: 88vh;
+    background:
+      linear-gradient(rgba(31,43,35,0.62), rgba(31,43,35,0.72)),
+      /* url('COLE_O_LINK_DA_IMAGEM_AQUI') center / cover no-repeat, */
+      radial-gradient(ellipse at 30% 40%, #4A5F4A 0%, #2E4034 45%, #1A241E 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 32px 100px;
+    position: relative;
+  }
+  .hero-content { max-width: 780px; }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.14;
+    color: #fff;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+    line-height: 2;
+    max-width: 520px;
+    margin: 0 auto 44px;
+  }
+  .hero-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--forest-dark);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .hero-btn:hover { background: var(--gold-light); }
+
+  /* NÚMEROS */
+  .stats {
+    background: var(--white);
+    padding: 76px 32px;
+  }
+  .stats-inner { max-width: 1080px; margin: 0 auto; }
+  .stats-label {
+    text-align: center;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 52px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat {
+    text-align: center;
+    padding: 0 24px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 600;
+    color: var(--forest);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .stat-desc {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.75;
+  }
+
+  /* SPLIT SECTION */
+  .split {
+    background: var(--cream);
+    padding: 100px 32px;
+  }
+  .split-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .split-label {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .split h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+    font-weight: 500;
+    line-height: 1.22;
+    color: var(--forest);
+    margin-bottom: 24px;
+    letter-spacing: 0.01em;
+  }
+  .split p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+  /* ==========================================================
+     TROCAR IMAGEM DO BLOCO LATERAL AQUI
+     Cole o link na linha url(...) e apague o linear-gradient.
+     ========================================================== */
+  .split-visual {
+    background:
+      /* url('COLE_O_LINK_DA_IMAGEM_AQUI') center / cover no-repeat, */
+      linear-gradient(160deg, #3E5240 0%, #2E4034 60%, #22301F 100%);
+    aspect-ratio: 4 / 5;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 36px;
+  }
+  .split-visual::before {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(183,155,98,0.35);
+    pointer-events: none;
+  }
+  .split-visual-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    line-height: 1.35;
+    font-weight: 400;
+    position: relative;
+  }
+
+  /* CONTEÚDOS */
+  .content-section {
+    background: var(--white);
+    padding: 100px 32px;
+  }
+  .content-inner { max-width: 1080px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .section-label {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--forest);
+    margin-bottom: 16px;
+  }
+  .section-head p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.85;
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .content-card {
+    background: var(--cream);
+    padding: 0;
+    overflow: hidden;
+  }
+  /* ==========================================================
+     TROCAR IMAGENS DOS CARDS DE CONTEÚDO
+     Para usar uma imagem diferente em cada card, adicione no HTML
+     o atributo style no div .card-visual, assim:
+     <div class="card-visual" style="background-image:
+        linear-gradient(rgba(31,43,35,.55),rgba(31,43,35,.55)),
+        url('LINK_DA_IMAGEM'); background-size: cover;">
+     ========================================================== */
+  .card-visual {
+    height: 130px;
+    background: linear-gradient(140deg, #3E5240, #2E4034);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .card-visual-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .card-visual-unit {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(212,190,142,0.65);
+    margin-left: 6px;
+  }
+  .card-body { padding: 26px 26px 30px; }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--forest);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .card-meta {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .card-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--forest);
+    background: var(--gold-light);
+    padding: 4px 10px;
+    margin-top: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* FRENTES */
+  .frentes {
+    background: var(--forest);
+    padding: 100px 32px;
+  }
+  .frentes-inner { max-width: 1080px; margin: 0 auto; }
+  .frentes .section-label { color: var(--gold-light); }
+  .frentes .section-head h2 { color: #fff; }
+  .frentes .section-head p { color: rgba(255,255,255,0.6); }
+  .frentes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+  .frente {
+    background: var(--forest);
+    padding: 40px 34px;
+  }
+  .frente-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .frente-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+  .frente-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.58);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  /* CTA */
+  /* ==========================================================
+     TROCAR IMAGEM DE FUNDO DO CTA AQUI
+     Cole o link na linha url(...) e apague o radial-gradient.
+     ========================================================== */
+  .cta {
+    background:
+      linear-gradient(rgba(31,43,35,0.86), rgba(31,43,35,0.9)),
+      /* url('COLE_O_LINK_DA_IMAGEM_AQUI') center / cover no-repeat, */
+      radial-gradient(ellipse at 70% 30%, #4A5F4A, #1A241E);
+    padding: 110px 32px;
+    text-align: center;
+  }
+  .cta-inner { max-width: 620px; margin: 0 auto; }
+  .cta-label {
+    font-size: 10px;
+    color: var(--gold-light);
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 22px;
+    letter-spacing: 0.02em;
+  }
+  .cta p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.62);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 42px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--forest-dark);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 17px 44px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold-light); }
+  .cta-phone {
+    margin-top: 24px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.14em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--forest-dark);
+    padding: 40px 32px;
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .footer-meta {
+    font-size: 10px;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .split-inner { grid-template-columns: 1fr; gap: 44px; }
+    .split-visual { aspect-ratio: 16/10; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px 0; }
+    .stat:nth-child(2) { border-right: none; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { min-height: 80vh; padding: 110px 20px 80px; }
+    .content-grid { grid-template-columns: 1fr; }
+    .frentes-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; gap: 36px; }
+    .stat { border-right: none; padding: 0; }
+    .split, .content-section, .frentes, .cta, .stats { padding-left: 20px; padding-right: 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">Pedro Munareto</span>
+    <ul class="nav-links">
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#prints">Prints</a></li>
+      <li><a href="#conteudos">Conteúdos</a></li>
+      <li><a href="#contribuicao">Contribuição</a></li>
+    </ul>
+    <a href="https://wa.me/5555991011436" class="nav-cta">Conversar</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Patrimônio Mundial da Humanidade · UNESCO</div>
+    <h1>São Miguel<br>no mapa digital</h1>
+    <p class="hero-sub">Mais de um ano construindo o alcance da cidade no digital</p>
+    <a href="#resultados" class="hero-btn">Ver os resultados</a>
+  </div>
+</div>
+
+<div class="stats" id="resultados">
+  <div class="stats-inner">
+    <div class="stats-label">Últimos 6 meses · Pousada das Missões</div>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">2,5M</div>
+        <div class="stat-desc">Visualizações<br>geradas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2.216</div>
+        <div class="stat-desc">Contatos<br>no WhatsApp</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">R$1,73</div>
+        <div class="stat-desc">Custo médio<br>por contato</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+124%</div>
+        <div class="stat-desc">Crescimento<br>de alcance</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SEÇÃO DE PRINTS — ID: prints
+     Instruções para adicionar suas imagens:
+     Em cada div.print-slot, substitua o atributo src da tag <img>
+     pelo link ou caminho local da sua imagem.
+     Exemplo: <img src="https://seusite.com/print1.jpg" ...>
+     Você pode duplicar ou remover blocos .print-slot conforme necessário.
+     ============================================================ -->
+<div id="prints" style="background:#fff; padding:100px 32px; border-top:1px solid #DDD8C9;">
+  <div style="max-width:1080px; margin:0 auto;">
+
+    <div style="text-align:center; margin-bottom:60px;">
+      <div style="font-size:10px; color:#B79B62; letter-spacing:0.24em; text-transform:uppercase; margin-bottom:18px;">Evidências reais</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,3.6vw,2.7rem); font-weight:500; color:#2E4034; margin-bottom:16px;">Prints da Pousada das Missões</h2>
+      <p style="font-size:14px; color:#6F6F66; line-height:1.85; font-weight:300; max-width:480px; margin:0 auto;">Métricas reais, conteúdos que viralizaram e resultados do tráfego pago. Tudo gerado nos últimos 12 meses.</p>
+    </div>
+
+    <!-- BLOCO 1: PRINTS DE MÉTRICAS / INSIGHTS -->
+    <div style="margin-bottom:56px;">
+      <div style="font-size:10px; color:#2E4034; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:24px; padding-bottom:12px; border-bottom:1px solid #DDD8C9;">Métricas e insights da conta</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+
+        <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:9/16; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; gap:12px; padding:16px; overflow:hidden;">
+          <!-- SUBSTITUA O src PELO LINK DA SUA IMAGEM -->
+          <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Print de métricas 1" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+          <div class="placeholder-text" style="text-align:center;">
+            <div style="font-size:28px; color:#DDD8C9; margin-bottom:8px;">📊</div>
+            <div style="font-size:11px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Print de métrica 1</div>
+            <div style="font-size:11px; color:#9B9B90; margin-top:4px;">Substitua o src pela imagem</div>
+          </div>
+        </div>
+
+        <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:9/16; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; gap:12px; padding:16px; overflow:hidden;">
+          <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Print de métricas 2" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+          <div class="placeholder-text" style="text-align:center;">
+            <div style="font-size:28px; color:#DDD8C9; margin-bottom:8px;">📊</div>
+            <div style="font-size:11px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Print de métrica 2</div>
+            <div style="font-size:11px; color:#9B9B90; margin-top:4px;">Substitua o src pela imagem</div>
+          </div>
+        </div>
+
+        <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:9/16; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; gap:12px; padding:16px; overflow:hidden;">
+          <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Print de métricas 3" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+          <div class="placeholder-text" style="text-align:center;">
+            <div style="font-size:28px; color:#DDD8C9; margin-bottom:8px;">📊</div>
+            <div style="font-size:11px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Print de métrica 3</div>
+            <div style="font-size:11px; color:#9B9B90; margin-top:4px;">Substitua o src pela imagem</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOCO 2: VÍDEOS MAIS VIRALIZADOS -->
+    <div style="margin-bottom:56px;">
+      <div style="font-size:10px; color:#2E4034; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:24px; padding-bottom:12px; border-bottom:1px solid #DDD8C9;">Vídeos mais viralizados</div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:9/16; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; overflow:hidden;">
+            <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Vídeo viral 1" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+            <div class="placeholder-text" style="text-align:center; padding:12px;">
+              <div style="font-size:24px; color:#DDD8C9; margin-bottom:6px;">🎬</div>
+              <div style="font-size:10px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Vídeo 1</div>
+            </div>
+          </div>
+          <div style="font-size:13px; font-weight:600; color:#2E4034;">382k views</div>
+          <div style="font-size:11px; color:#6F6F66;">2 dias em São Miguel</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:9/16; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; overflow:hidden;">
+            <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Vídeo viral 2" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+            <div class="placeholder-text" style="text-align:center; padding:12px;">
+              <div style="font-size:24px; color:#DDD8C9; margin-bottom:6px;">🎬</div>
+              <div style="font-size:10px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Vídeo 2</div>
+            </div>
+          </div>
+          <div style="font-size:13px; font-weight:600; color:#2E4034;">167k views</div>
+          <div style="font-size:11px; color:#6F6F66;">Do Patrimônio à sua cama</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:9/16; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; overflow:hidden;">
+            <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Vídeo viral 3" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+            <div class="placeholder-text" style="text-align:center; padding:12px;">
+              <div style="font-size:24px; color:#DDD8C9; margin-bottom:6px;">🎬</div>
+              <div style="font-size:10px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Vídeo 3</div>
+            </div>
+          </div>
+          <div style="font-size:13px; font-weight:600; color:#2E4034;">164k views</div>
+          <div style="font-size:11px; color:#6F6F66;">Família Guedes · Em Família</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:9/16; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; overflow:hidden;">
+            <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Vídeo viral 4" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+            <div class="placeholder-text" style="text-align:center; padding:12px;">
+              <div style="font-size:24px; color:#DDD8C9; margin-bottom:6px;">🎬</div>
+              <div style="font-size:10px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Vídeo 4</div>
+            </div>
+          </div>
+          <div style="font-size:13px; font-weight:600; color:#2E4034;">48k views</div>
+          <div style="font-size:11px; color:#6F6F66;">Ruínas · Colégio jesuíta</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOCO 3: PRINTS DO GERENCIADOR / TRÁFEGO PAGO -->
+    <div>
+      <div style="font-size:10px; color:#2E4034; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:24px; padding-bottom:12px; border-bottom:1px solid #DDD8C9;">Tráfego pago · Gerenciador de anúncios</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+
+        <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; overflow:hidden;">
+          <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Print gerenciador 1" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+          <div class="placeholder-text" style="text-align:center; padding:20px;">
+            <div style="font-size:28px; color:#DDD8C9; margin-bottom:8px;">💰</div>
+            <div style="font-size:11px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Print do gerenciador 1</div>
+            <div style="font-size:11px; color:#9B9B90; margin-top:4px;">Custo por resultado, alcance, conversões</div>
+          </div>
+        </div>
+
+        <div class="print-slot" style="border:1px dashed #B79B62; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#FDFAF3; overflow:hidden;">
+          <img src="COLE_O_LINK_DO_PRINT_AQUI" alt="Print gerenciador 2" style="width:100%; height:100%; object-fit:cover; display:none;" onload="this.style.display='block'; this.parentElement.querySelector('.placeholder-text').style.display='none'">
+          <div class="placeholder-text" style="text-align:center; padding:20px;">
+            <div style="font-size:28px; color:#DDD8C9; margin-bottom:8px;">💰</div>
+            <div style="font-size:11px; color:#B79B62; letter-spacing:0.1em; text-transform:uppercase;">Print do gerenciador 2</div>
+            <div style="font-size:11px; color:#9B9B90; margin-top:4px;">Custo por resultado, alcance, conversões</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="split">
+  <div class="split-inner">
+    <div>
+      <div class="split-label">O contexto</div>
+      <h2>Um ano aprendendo como São Miguel atrai.</h2>
+      <p>Trabalhando o marketing da Pousada das Missões, entendi na prática o que faz um conteúdo sobre a cidade alcançar públicos fora do Rio Grande do Sul. Não é teoria: são números reais, campanhas testadas e conteúdos que performaram.</p>
+      <p style="margin-top:20px">O que aprendi ali pode complementar o trabalho que a prefeitura já desenvolve no digital.</p>
+    </div>
+    <div class="split-visual">
+      <div class="split-visual-text">Patrimônio Mundial<br>desde 1983</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-section" id="conteudos">
+  <div class="content-inner">
+    <div class="section-head">
+      <div class="section-label">Conteúdos produzidos</div>
+      <h2>Posts que colocaram a cidade no mapa</h2>
+      <p>Cada resultado abaixo veio de conteúdo sobre São Miguel, sua história e seu patrimônio. Não apenas sobre a pousada.</p>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <div class="card-visual">
+          <span class="card-visual-num">382k</span><span class="card-visual-unit">views</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">2 dias em São Miguel das Missões</div>
+          <div class="card-meta">1.025 interações · Facebook</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-visual">
+          <span class="card-visual-num">167k</span><span class="card-visual-unit">views</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Do Patrimônio Mundial até a sua cama</div>
+          <div class="card-meta">1.857 interações · Reel</div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-visual">
+          <span class="card-visual-num">164k</span><span class="card-visual-unit">views</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Família Guedes no programa Em Família</div>
+          <div class="card-meta">3.227 interações · Facebook e Instagram</div>
+          <span class="card-badge">100% orgânico</span>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-visual">
+          <span class="card-visual-num">48k</span><span class="card-visual-unit">views</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Dentro das Ruínas existe um colégio</div>
+          <div class="card-meta">2.048 interações · Reel Facebook</div>
+          <span class="card-badge">100% orgânico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="frentes" id="contribuicao">
+  <div class="frentes-inner">
+    <div class="section-head">
+      <div class="section-label">Contribuição proposta</div>
+      <h2>Onde posso agregar</h2>
+      <p>Frentes específicas que complementam o trabalho já existente, cada uma com resultado comprovado para a cidade.</p>
+    </div>
+    <div class="frentes-grid">
+      <div class="frente">
+        <div class="frente-num">I</div>
+        <div class="frente-title">Conteúdo sobre o patrimônio</div>
+        <div class="frente-desc">Reels e posts sobre história, cultura e experiências locais que alcançam públicos fora do estado.</div>
+      </div>
+      <div class="frente">
+        <div class="frente-num">II</div>
+        <div class="frente-title">Tráfego pago para turismo</div>
+        <div class="frente-desc">Campanhas no Meta Ads segmentadas por interesse em turismo histórico e cultural.</div>
+      </div>
+      <div class="frente">
+        <div class="frente-num">III</div>
+        <div class="frente-title">Múltiplas plataformas</div>
+        <div class="frente-desc">Um conteúdo adaptado para Instagram, Facebook, TikTok e YouTube Shorts.</div>
+      </div>
+      <div class="frente">
+        <div class="frente-num">IV</div>
+        <div class="frente-title">Relatórios com dados reais</div>
+        <div class="frente-desc">Acompanhamento semanal com alcance, engajamento e custo por resultado.</div>
+      </div>
+    </div>
+  </div>
+<div class="cta">
+  <div class="cta-inner">
+    <div class="cta-label">Próximo passo</div>
+    <h2>Vinte minutos de conversa</h2>
+    <p>Entender o que já está sendo feito e identificar onde posso agregar ao trabalho da prefeitura.</p>
+    <a href="https://wa.me/5555991011436" class="cta-btn">Falar pelo WhatsApp</a>
+    <div class="cta-phone">(55) 99101-1436</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">Pedro Munareto</span>
+    <span class="footer-meta">Gestor de Instagram e Tráfego Pago · Setembro 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
