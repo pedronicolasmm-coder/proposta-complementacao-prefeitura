@@ -19,6 +19,10 @@
     --amber-light: #fef3dc;
     --brown: #6b4226;
     --brown-light: #f5ece4;
+    --blue: #1d4f91;
+    --blue-light: #e8eef7;
+    --red: #9b2226;
+    --red-light: #fbecec;
     --white: #ffffff;
     --col: 760px;
   }
@@ -230,6 +234,116 @@
   }
   .print-title { font-size: 12px; color: var(--gray); margin-top: 2px; }
 
+  /* TRÁFEGO PAGO · PAINÉIS META 1 e META 2 */
+  /* A seção #trafego entra depois de #prints e desloca em 1 a paridade
+     de section:nth-child. As duas regras abaixo apenas devolvem o fundo
+     original às seções seguintes — nenhuma delas foi alterada. */
+  #trafego { background: var(--white); }
+  #trafego ~ section:nth-child(even) { background: var(--white); }
+  #trafego ~ section:nth-child(odd) { background: var(--gray-light); }
+
+  .ads-panel { margin-bottom: 52px; }
+  .ads-panel:last-child { margin-bottom: 0; }
+  .ads-panel-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-line);
+  }
+  .ads-panel-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .ads-panel-sub {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  /* Linha de 4 números */
+  .ads-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--gray-line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .ads-kpi {
+    padding: 22px 18px;
+    background: var(--white);
+    border-right: 1px solid var(--gray-line);
+    min-width: 0;
+  }
+  .ads-kpi, .ads-card { overflow-wrap: anywhere; }
+  .ads-kpi:last-child { border-right: none; }
+  .ads-kpi-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .ads-kpi-value {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    font-weight: 600;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+  .ads-kpi-note { font-size: 11px; color: var(--gray); line-height: 1.5; }
+  .ads-kpi--green .ads-kpi-value { color: var(--green); }
+  .ads-kpi--blue .ads-kpi-value { color: var(--blue); }
+  .ads-kpi--red .ads-kpi-value { color: var(--red); }
+
+  /* Grid de 4 cards de detalhe */
+  .ads-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ads-card {
+    padding: 20px;
+    border: 1px solid var(--gray-line);
+    border-top: 2px solid var(--gray-line);
+    border-radius: 12px;
+    background: var(--white);
+    min-width: 0;
+  }
+  .ads-card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .ads-card-value {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+  .ads-card-desc { font-size: 12px; color: var(--black); line-height: 1.6; }
+  .ads-card--green { background: var(--green-light); border-top-color: var(--green); }
+  .ads-card--green .ads-card-value { color: var(--green); }
+  .ads-card--blue { background: var(--blue-light); border-top-color: var(--blue); }
+  .ads-card--blue .ads-card-value { color: var(--blue); }
+  .ads-card--red { background: var(--red-light); border-top-color: var(--red); }
+  .ads-card--red .ads-card-value { color: var(--red); }
+
   /* CONTEÚDOS CARDS */
   .content-grid {
     display: grid;
@@ -377,6 +491,10 @@
     .content-grid, .frentes-grid { grid-template-columns: 1fr; }
     .prints-3, .prints-4 { grid-template-columns: 1fr 1fr; }
     .prints-2 { grid-template-columns: 1fr; }
+    .ads-kpis { grid-template-columns: 1fr 1fr; }
+    .ads-kpi:nth-child(2) { border-right: none; }
+    .ads-kpi:nth-child(1), .ads-kpi:nth-child(2) { border-bottom: 1px solid var(--gray-line); }
+    .ads-details { grid-template-columns: 1fr; }
     section, .cta, .transicao { padding-left: 20px; padding-right: 20px; }
     nav { padding: 0 20px; }
     .hero { padding: 72px 20px 56px; }
@@ -561,6 +679,121 @@
         </div>
         <div class="print-slot print-slot-horizontal">
           <img src="imagens/WhatsApp%20Image%202026-09-15%20at%2011.13.22%20(1).jpeg" alt="Gerenciador 2" class="loaded" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRÁFEGO PAGO · PAINÉIS -->
+<section id="trafego">
+  <div class="inner">
+    <div class="section-kicker">Tráfego pago · dados de gerenciador</div>
+    <h2 class="section-title">O que a verba de anúncio entregou.</h2>
+    <p class="section-sub">Dois painéis consolidados: campanhas de busca no Google Ads e anúncios de mensagem no Meta. Investimento, custo por resultado e alcance — inclusive o que não funcionou.</p>
+
+    <!-- META 1 -->
+    <div class="ads-panel">
+      <div class="ads-panel-tag">Meta 1 · Google Ads</div>
+      <h3 class="ads-panel-title">Resumo de campanhas</h3>
+      <p class="ads-panel-sub">18 de março a 17 de setembro de 2026 · 2 campanhas ativas no período · Google Ads Search</p>
+
+      <div class="ads-kpis">
+        <div class="ads-kpi">
+          <div class="ads-kpi-label">Total investido</div>
+          <div class="ads-kpi-value">R$2.067</div>
+          <div class="ads-kpi-note">Mar a set/2026</div>
+        </div>
+        <div class="ads-kpi ads-kpi--green">
+          <div class="ads-kpi-label">Conversões</div>
+          <div class="ads-kpi-value">192</div>
+          <div class="ads-kpi-note">Total no período</div>
+        </div>
+        <div class="ads-kpi ads-kpi--green">
+          <div class="ads-kpi-label">Melhor custo/conv.</div>
+          <div class="ads-kpi-value">R$7,40</div>
+          <div class="ads-kpi-note">Campanha #2 ativa</div>
+        </div>
+        <div class="ads-kpi ads-kpi--blue">
+          <div class="ads-kpi-label">CTR consolidado</div>
+          <div class="ads-kpi-value">10,97%</div>
+          <div class="ads-kpi-note">1.226 cliques · 11.177 impressões</div>
+        </div>
+      </div>
+
+      <div class="ads-details">
+        <div class="ads-card ads-card--green">
+          <h4 class="ads-card-title">Melhor campanha ativa</h4>
+          <div class="ads-card-value">R$7,40 por conversão</div>
+          <p class="ads-card-desc">Pousada Missões #2 · 140 conversões · CTR 11,47% · CPC R$1,33</p>
+        </div>
+        <div class="ads-card ads-card--blue">
+          <h4 class="ads-card-title">Maior CTR</h4>
+          <div class="ads-card-value">11,47%</div>
+          <p class="ads-card-desc">Pousada Missões #2 · 777 cliques em 6.773 impressões</p>
+        </div>
+        <div class="ads-card ads-card--red">
+          <h4 class="ads-card-title">Campanha pausada</h4>
+          <div class="ads-card-value">R$19,83 por conversão</div>
+          <p class="ads-card-desc">Pousada Missões (original) · pausada · 52 conversões · CPC R$2,30</p>
+        </div>
+        <div class="ads-card ads-card--red">
+          <h4 class="ads-card-title">Bloqueada por política</h4>
+          <div class="ads-card-value">R$0 investido</div>
+          <p class="ads-card-desc">Leads-Performance Max-1 · limitada por política · sem veiculação no período</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- META 2 -->
+    <div class="ads-panel">
+      <div class="ads-panel-tag">Meta 2 · Meta Ads</div>
+      <h3 class="ads-panel-title">Resumo de anúncios</h3>
+      <p class="ads-panel-sub">Maio a setembro de 2026 · 9 campanhas analisadas · Fonte: Meta Business Suite</p>
+
+      <div class="ads-kpis">
+        <div class="ads-kpi">
+          <div class="ads-kpi-label">Total investido</div>
+          <div class="ads-kpi-value">R$2.431</div>
+          <div class="ads-kpi-note">Mai a ago/2026</div>
+        </div>
+        <div class="ads-kpi ads-kpi--green">
+          <div class="ads-kpi-label">Conversas geradas</div>
+          <div class="ads-kpi-value">1.369</div>
+          <div class="ads-kpi-note">Mensagens iniciadas</div>
+        </div>
+        <div class="ads-kpi ads-kpi--green">
+          <div class="ads-kpi-label">Melhor CPR</div>
+          <div class="ads-kpi-value">R$1,16</div>
+          <div class="ads-kpi-note">Custo por conversa</div>
+        </div>
+        <div class="ads-kpi ads-kpi--blue">
+          <div class="ads-kpi-label">Visualizadores totais</div>
+          <div class="ads-kpi-value">266k</div>
+          <div class="ads-kpi-note">Pessoas únicas alcançadas</div>
+        </div>
+      </div>
+
+      <div class="ads-details">
+        <div class="ads-card ads-card--green">
+          <h4 class="ads-card-title">Melhor anúncio</h4>
+          <div class="ads-card-value">R$1,16 por conversa</div>
+          <p class="ads-card-desc">“2 dias em São Miguel!” · 430 conversas · 81k visualizadores · Mai/2026</p>
+        </div>
+        <div class="ads-card ads-card--blue">
+          <h4 class="ads-card-title">Maior alcance</h4>
+          <div class="ads-card-value">124,5k visualizações</div>
+          <p class="ads-card-desc">“Tem gente que chega...” · Jun/2026 · 311 conversas a R$2,33</p>
+        </div>
+        <div class="ads-card ads-card--red">
+          <h4 class="ads-card-title">Pior custo por resultado</h4>
+          <div class="ads-card-value">R$12,06 por conversa</div>
+          <p class="ads-card-desc">“Patrimônio Mundial de dia...” · Post IG · Ago/2026 · apenas 13 conversas</p>
+        </div>
+        <div class="ads-card">
+          <h4 class="ads-card-title">Criativo mais consistente</h4>
+          <div class="ads-card-value">R$1,17 · R$1,72 · R$1,96</div>
+          <p class="ads-card-desc">“Do Patrimônio Mundial...” repetido 3x em datas diferentes com desempenho estável</p>
         </div>
       </div>
     </div>
